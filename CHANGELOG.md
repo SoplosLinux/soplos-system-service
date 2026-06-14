@@ -11,27 +11,44 @@ and this project adheres to [Semantic Versioning](https://semver.org/lang/en/).
 
 Complete rewrite of the application after almost a year on hold. The original skeleton has been replaced with a fully functional implementation following the Soplos application architecture pattern.
 
-- **GTK3 interface**: Full window with sidebar navigation (Gtk.ListBox) and content switching (Gtk.Stack)
-- **Services view**: Sortable and filterable TreeView with all systemd service columns, color-coded active state (green/red)
-- **Details panel**: Gtk.Paned split view showing service name, state and description below the list
-- **Service control**: Start, stop, restart, enable and disable buttons with confirmation dialogs
-- **Log viewer**: Second navigation view with real-time journalctl output for the selected service
-- **Environment detection**: Detects GNOME/XFCE/KDE desktop and X11/Wayland protocol at startup
-- **CSD header bar**: Applied on GNOME, skipped on XFCE and KDE for native window decoration compatibility
-- **Automatic theme detection**: Dark/light detection per desktop (xfconf-query for XFCE, kdeglobals for KDE, gsettings for GNOME)
-- **CSS theming**: base.css plus dark.css or light.css loaded according to detected theme, with Soplos orange brand color
-- **Modular architecture**: core/ (application, environment, theme_manager) + ui/ (main_window, services_view, logs_view) + services/ + utils/
-- **Improved pkexec elevation**: Now passes XDG_CURRENT_DESKTOP, XDG_SESSION_TYPE, LANG and other environment variables through pkexec so that environment and theme detection work correctly as root
-- **Threading**: Service listing and log fetching run in background threads to keep the UI responsive
-- **Fixed**: Duplicate service rows — the original _populate_service_store() appended each service twice
-- **Fixed**: utils/strings.py — removed the duplicate redefinition of six language dicts, the STRINGS dict and get_string() that existed after line 47, including the dead double-return on the last line
-- **Fixed**: Removed debug print statements (DEBUG: Passed root check..., DEBUG: Gtk initialized..., etc.) from main.py
+- **Gtk.Notebook tabs**: Two-tab interface (Services / Logs) with Soplos orange accent on the active tab, replacing the original skeleton layout
+- **Services view**: Sortable TreeView with color-coded active state (green for active, red for failed/inactive) and color-coded load state (not-found in red)
+- **Smart action buttons**: Start, Stop and Restart buttons enabled or disabled based on the current service state; all five controls disabled until a service is selected
+- **Scrollable details panel**: Gtk.TextView inside Gtk.ScrolledWindow replacing the original Gtk.Label, preventing window deformation on long output
+- **Log viewer tab**: Gtk.TextView with monospace font showing journalctl output for the selected service
+- **Progress bar**: Gtk.Revealer with Gtk.ProgressBar in pulse mode shown during service listing and service operations, following the Soplos standard
+- **CSD HeaderBar**: Always active regardless of desktop environment; subtitle updated with operation status (loading count, errors)
+- **Soplos footer**: Static DE and display protocol on the left, base version without debian revision suffix on the right
+- **Dark/light theme**: Pre-detected as the regular user before pkexec elevation and passed via SOPLOS_COLOR_SCHEME environment variable, ensuring correct colors when running as root under XFCE, KDE or GNOME
+- **CSS loading**: Two separate Gtk.CssProvider instances following the Soplos theme pattern (dark.css or light.css first, then base.css), not a combined string
+- **i18n**: All UI strings through the dict-based _() system; new keys added for all new UI elements across all 8 languages
+- **pycache cleanup**: Automatic cleanup of __pycache__ directories on exit via atexit.register and signal.signal handlers for SIGINT and SIGTERM in main.py
+- **Modular architecture**: core/ (application, environment, theme_manager) + ui/ (main_window, services_view, logs_view) + services/systemd.py + utils/strings.py + utils/gettext/
+- **Improved pkexec elevation**: Forwards DISPLAY, XAUTHORITY, XDG_CURRENT_DESKTOP, XDG_SESSION_TYPE, XDG_SESSION_DESKTOP, DESKTOP_SESSION, DBUS_SESSION_BUS_ADDRESS, LANG, LANGUAGE, LC_ALL, HOME, USER, SOPLOS_SYSTEM_SERVICE_LANG and SOPLOS_COLOR_SCHEME through pkexec env
+
+### Added
+
+- Polkit policy file: debian/org.soplos.systemservice.policy
+- Desktop launcher: debian/org.soplos.systemservice.desktop with Name and Comment in all 8 languages
+- Bash launcher wrapper: debian/soplos-system-services
+- Debian packaging: debian/control and debian/copyright
+- Icons: 48x48, 64x64 and 128x128 subfolders under assets/icons/ from the original 1024px icon
+- Screenshots: assets/screenshots/screenshot01.png, screenshot02.png, screenshot03.png
+
+### Fixed
+
+- Duplicate service rows in the original _populate_service_store() which appended each service twice
+- Bullet character (U+25CF) parsed as service name when systemctl prefixed failed units with the symbol
+- utils/strings.py: removed duplicate redefinition of all language dicts and dead double-return after line 47
+- Removed all debug print statements from main.py (DEBUG: Passed root check, DEBUG: Gtk initialized, etc.)
+- Progress bar position: was appearing below the footer due to pack_end ordering; footer is now packed first so the progress bar sits correctly between content and footer
+- Progress bar visibility: added 700ms minimum display time so the bar is noticeable even when service listing completes instantly
+- GTK_IM_MODULE set to gtk-im-context-simple before pkexec to suppress ibus connection warnings when running as root
 
 ### Improved
 
-- services/systemd.py: All control functions now use subprocess.run with capture_output and timeout instead of subprocess.call; added get_service_logs() using journalctl
-- utils/strings.py: Added global _() function and set_language() so all modules share a single language state without passing lang everywhere
-- utils/gettext/*.py: Added new string keys for all UI elements added in this release across all 8 languages
+- services/systemd.py: All control functions use subprocess.run with capture_output and timeout; added get_service_logs() via journalctl
+- utils/strings.py: Added global _() and set_language() and get_current_language() so all modules share a single language state
 
 ## [1.0.0] - 2025-07-31
 

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE policyconfig PUBLIC
+ "-//freedesktop//DTD PolicyKit Policy Configuration 1.0//EN"
+ "http://www.freedesktop.org/standards/PolicyKit/1/policyconfig.dtd">
+<policyconfig>
+  <vendor>Soplos</vendor>
+  <vendor_url>https://github.com/SoplosLinux</vendor_url>
+  <action id="org.soplos.systemservice.run">
+    <description>Run Soplos System Services</description>
+    <description xml:lang="de">Soplos Systemdienste ausfuhren</description>
+    <description xml:lang="es">Ejecutar Servicios del sistema Soplos</description>
+    <description xml:lang="fr">Executer les Services systeme Soplos</description>
+    <description xml:lang="it">Eseguire Servizi di sistema Soplos</description>
+    <description xml:lang="pt">Executar Servicos do sistema Soplos</description>
+    <description xml:lang="ro">Ruleaza Servicii de sistem Soplos</description>
+    <description xml:lang="ru">Запустить Системные службы Soplos</description>
+    <message>Administrator privileges are required to manage system services</message>
+    <message xml:lang="de">Administratorrechte sind erforderlich, um Systemdienste zu verwalten</message>
+    <message xml:lang="es">Se requieren privilegios de administrador para gestionar los servicios del sistema</message>
+    <message xml:lang="fr">Des privileges administrateur sont requis pour gerer les services systeme</message>
+    <message xml:lang="it">Sono necessari i privilegi di amministratore per gestire i servizi di sistema</message>
+    <message xml:lang="pt">Sao necessarios privilegios de administrador para gerir os servicos do sistema</message>
+    <message xml:lang="ro">Sunt necesare privilegii de administrator pentru a gestiona serviciile de sistem</message>
+    <message xml:lang="ru">Для управления системными службами требуются права администратора</message>
+    <icon_name>preferences-system</icon_name>
+    <defaults>
+      <allow_any>auth_admin</allow_any>
+      <allow_inactive>auth_admin</allow_inactive>
+      <allow_active>auth_admin</allow_active>
+    </defaults>
+    <annotate key="org.freedesktop.policykit.exec.path">/usr/share/soplos-system-services/main.py</annotate>
+  </action>
+</policyconfig>

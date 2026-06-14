@@ -1,71 +1,101 @@
 import gi
-gi.require_version("Gtk", "3.0")
+gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk
+
 import os
 import sys
-from utils.strings import get_string, get_system_language
+import signal
+import atexit
+import shutil
 
-APP_NAME = "soplos-system-services"
+
+def cleanup_pycache():
+    try:
+        base_dir = os.path.dirname(os.path.abspath(globals().get('__file__') or sys.argv[0]))
+        for root, dirs, _ in os.walk(base_dir):
+            if '__pycache__' in dirs:
+                try:
+                    shutil.rmtree(os.path.join(root, '__pycache__'))
+                except Exception:
+                    pass
+    except Exception:
+        pass
+
+
+atexit.register(cleanup_pycache)
+def _signal_handler(*_):
+    cleanup_pycache()
+    sys.exit(0)
+
+
+signal.signal(signal.SIGINT, _signal_handler)
+signal.signal(signal.SIGTERM, _signal_handler)
+
 
 def relaunch_as_root():
-    """Relaunch the program with pkexec if not running as root."""
-    if os.geteuid() != 0:
-        try:
-            script = os.path.abspath(sys.argv[0])
-            display = os.environ.get("DISPLAY")
-            xauthority = os.environ.get("XAUTHORITY")
-            env = os.environ.copy()
-            if display:
-                env["DISPLAY"] = display
-            if xauthority:
-                env["XAUTHORITY"] = xauthority
-            args = ["pkexec", "env"]
-            if display:
-                args += [f"DISPLAY={display}"]
-            if xauthority:
-                args += [f"XAUTHORITY={xauthority}"]
-            args += [sys.executable, script] + sys.argv[1:]
-            os.execvpe("pkexec", args, env)
-        except Exception as e:
-            dialog = Gtk.MessageDialog(
-                parent=None,
-                flags=0,
-                message_type=Gtk.MessageType.ERROR,
-                buttons=Gtk.ButtonsType.CLOSE,
-                text="This program must be run as administrator (pkexec)."
-            )
-            dialog.format_secondary_text(str(e))
-            dialog.run()
-            dialog.destroy()
-            sys.exit(1)
+    """Relaunch with pkexec if not running as root, passing all required env vars."""
+    if os.geteuid() == 0:
+        return
 
-# Import the main window from the UI module (future modularization)
-try:
-    from ui.main_window import MainWindow
-except ImportError:
-    class MainWindow(Gtk.Window):
-        def __init__(self):
-            Gtk.Window.__init__(self, title="Soplos System Services")
-            self.set_default_size(950, 650)
-            self.set_border_width(0)
-            # Here will go the sidebar, service list, details panel, etc.
-            # The design and style will follow the Soplos Welcome pattern.
-            # ...professional structure, ready for tabs and widgets...
+    script = os.path.abspath(sys.argv[0])
+
+    env_vars = {}
+    for key in ('DISPLAY', 'XAUTHORITY', 'XDG_CURRENT_DESKTOP', 'XDG_SESSION_TYPE',
+                'XDG_SESSION_DESKTOP', 'DESKTOP_SESSION', 'DBUS_SESSION_BUS_ADDRESS',
+                'LANG', 'LANGUAGE', 'LC_ALL', 'HOME', 'USER',
+                'SOPLOS_SYSTEM_SERVICE_LANG'):
+        val = os.environ.get(key)
+        if val:
+            env_vars[key] = val
+    # Prevent GTK from trying to connect to ibus as root, which produces warnings.
+    env_vars['GTK_IM_MODULE'] = 'gtk-im-context-simple'
+
+    # Detect theme as regular user before becoming root.
+    # As root, xfconf-query and gsettings query root's empty config, not the user's.
+    try:
+        sys.path.insert(0, os.path.dirname(os.path.abspath(script)))
+        from core.environment import EnvironmentDetector
+        color_scheme = EnvironmentDetector().detect_all().get('theme_type', 'dark')
+        env_vars['SOPLOS_COLOR_SCHEME'] = color_scheme
+    except Exception:
+        pass
+
+    args = ['pkexec', 'env']
+    for key, val in env_vars.items():
+        args.append(f'{key}={val}')
+    args += [sys.executable, script] + sys.argv[1:]
+
+    try:
+        os.execvp('pkexec', args)
+    except Exception as e:
+        dialog = Gtk.MessageDialog(
+            parent=None,
+            flags=0,
+            message_type=Gtk.MessageType.ERROR,
+            buttons=Gtk.ButtonsType.CLOSE,
+            text='Root privileges required',
+        )
+        dialog.format_secondary_text(str(e))
+        dialog.run()
+        dialog.destroy()
+        sys.exit(1)
+
 
 def main():
     relaunch_as_root()
-    print("DEBUG: Passed root check, initializing Gtk...")
-    # Check if Gtk can be initialized (for headless or broken DISPLAY)
-    if not Gtk.init_check()[0]:
-        print("Error: Gtk could not be initialized. Make sure you are running in a graphical environment (X11 or Wayland).")
-        sys.exit(2)
-    print("DEBUG: Gtk initialized, creating MainWindow...")
-    lang = get_system_language()
-    win = MainWindow(lang=lang)
-    win.connect("destroy", Gtk.main_quit)
-    win.show_all()
-    print("DEBUG: MainWindow shown, entering Gtk.main() loop.")
-    Gtk.main()
 
-if __name__ == "__main__":
+    if not Gtk.init_check()[0]:
+        print('Error: GTK could not be initialized.')
+        sys.exit(2)
+
+    from utils.strings import get_system_language, set_language
+    lang = get_system_language()
+    set_language(lang)
+
+    from core.application import SoplosSystemServiceApp
+    app = SoplosSystemServiceApp()
+    sys.exit(app.run(sys.argv))
+
+
+if __name__ == '__main__':
     main()

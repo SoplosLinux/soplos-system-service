@@ -5,15 +5,15 @@
 
 GTK3 graphical manager for systemd services on Soplos Linux.
 
-*Gestor gráfico GTK3 para servicios systemd en Soplos Linux.*
+*Gestor grafico GTK3 para servicios systemd en Soplos Linux.*
 
 *Gestionnaire graphique GTK3 pour les services systemd sous Soplos Linux.*
 
-*GTK3-Verwaltungsoberfläche für systemd-Dienste unter Soplos Linux.*
+*GTK3-Verwaltungsoberflache fur systemd-Dienste unter Soplos Linux.*
 
 *Gestore grafico GTK3 per i servizi systemd su Soplos Linux.*
 
-*Gestor gráfico GTK3 para serviços systemd no Soplos Linux.*
+*Gestor grafico GTK3 para servicos systemd no Soplos Linux.*
 
 *Manager grafic GTK3 pentru serviciile systemd pe Soplos Linux.*
 
@@ -21,33 +21,35 @@ GTK3 graphical manager for systemd services on Soplos Linux.
 
 ## Description
 
-Soplos System Services is a graphical tool for managing systemd services on Soplos Linux Boro, Tyron and Tyson. It provides a clean interface to view, control and monitor all system services without using the terminal. Supports all major desktop environments and display protocols with complete internationalization for 8 languages.
+Soplos System Services is a graphical tool for managing systemd services on Soplos Linux Boro, Tyron and Tyson. It provides a clean tabbed interface to view, control and monitor all system services without using the terminal. Supports all major desktop environments and display protocols with complete internationalization for 8 languages.
+
+## Screenshots
+
+![Service list overview with color-coded status](assets/screenshots/screenshot01.png)
+![Service details panel showing systemctl status output](assets/screenshots/screenshot02.png)
+![Logs tab with journalctl output](assets/screenshots/screenshot03.png)
 
 ## Features
 
-- **Service list**: Complete view of all systemd services with name, load state, active state, sub-state and description
-- **Service control**: Start, stop, restart, enable and disable services with confirmation dialogs
-- **Service details**: Dedicated details panel showing the state of the selected service
-- **Log viewer**: Real-time journalctl log output for any selected service
-- **Desktop integration**: GNOME, XFCE and KDE (Plasma) support, with CSD header bar on GNOME
-- **Display protocol**: Compatible with X11 and Wayland
-- **Theme detection**: Automatic dark/light theme detection per desktop environment
-- **CSS theming**: Consistent Soplos visual style applied via GTK3 CSS
+- **Tab navigation**: Two-tab interface (Services / Logs) using Gtk.Notebook with Soplos orange accent on active tab
+- **Service list**: Complete view of all systemd services with name, load state, active state, sub-state and description, color-coded (green for active, red for failed/inactive/not-found)
+- **Service control**: Start, stop, restart, enable and disable services with confirmation dialogs; buttons adapt to service state (Start disabled when already running, Stop disabled when already stopped)
+- **Service details**: Scrollable details panel showing the full systemctl status output for the selected service
+- **Log viewer**: Real-time journalctl log output for the selected service in the Logs tab
+- **Progress bar**: Gtk.Revealer with pulse animation shown during loading and service operations, with 700ms minimum display time; positioned between content and footer
+- **CSD header bar**: Always active with Soplos decoration layout, subtitle updated with operation status
+- **Soplos footer**: Static DE and display protocol on the left, version on the right
+- **Theme detection**: Automatic dark/light theme detection per desktop environment; theme is pre-detected as the regular user before pkexec elevation to ensure correct colors as root
+- **CSS theming**: Consistent Soplos visual style via two separate GTK3 CSS providers (dark.css or light.css plus base.css), following the Soplos theme pattern
 - **8-language interface**: Spanish, English, French, German, Italian, Portuguese, Romanian, Russian
-- **Privilege elevation**: Transparent root access via pkexec
+- **Privilege elevation**: Transparent root access via pkexec with all required environment variables forwarded
+- **Background threading**: Service listing and log fetching run in background threads with GLib.idle_add callbacks
+- **pycache cleanup**: Automatic cleanup of __pycache__ on exit via atexit and SIGINT/SIGTERM handlers
 
 ## Installation
 
 ```bash
 sudo apt install soplos-system-services
-```
-
-Or from source:
-
-```bash
-git clone https://github.com/SoplosLinux/soplos-system-service
-cd soplos-system-service
-sudo python3 setup.py install
 ```
 
 ## Supported Languages
@@ -60,6 +62,12 @@ sudo python3 setup.py install
 - Portuguese (Portugues)
 - Romanian (Romana)
 - Russian (Russkiy)
+
+To force a specific language:
+
+```bash
+SOPLOS_SYSTEM_SERVICE_LANG=en /usr/bin/python3 main.py
+```
 
 ## Requirements
 
@@ -93,17 +101,22 @@ Contact: info@soploslinux.com
 ### v1.0.0-1 (14/06/2026)
 
 Complete rewrite of the application:
-- Full GTK3 interface with sidebar navigation and Gtk.Stack
-- Services view with sortable and filterable TreeView
-- Service details panel with start/stop/restart/enable/disable controls
-- Log viewer with journalctl integration
-- Environment detection (GNOME/XFCE/KDE, X11/Wayland)
-- Automatic dark/light theme detection per desktop environment
-- CSS theming with base/dark/light themes
-- Modular architecture following the Soplos application pattern (core/ui/services/utils)
-- Fixed duplicate service rendering bug in the original code
-- Fixed duplicate string definitions and dead code in utils/strings.py
-- Removed debug print statements from the original code
+
+- Gtk.Notebook tab interface (Services / Logs) replacing the original skeleton
+- Services tab: sortable TreeView with color-coded active state (green/red) and color-coded load state (not-found in red)
+- Smart action buttons: Start/Stop/Restart enabled or disabled based on current service state
+- Scrollable details panel using Gtk.TextView inside Gtk.ScrolledWindow
+- Logs tab: Gtk.TextView with monospace font showing journalctl output for the selected service
+- Progress bar: Gtk.Revealer with pulse animation during loading and service operations
+- CSD HeaderBar always active; subtitle shows operation status while loading
+- Static Soplos footer: DE and protocol on the left, base version (no debian revision) on the right
+- Dark/light theme pre-detected as the regular user before pkexec and passed via SOPLOS_COLOR_SCHEME environment variable, ensuring correct theme as root
+- Two-provider CSS loading pattern (dark.css or light.css first, then base.css) following the Soplos theme pattern
+- All text through the i18n system, no hardcoded strings
+- pycache cleanup via atexit.register and signal handlers for SIGINT/SIGTERM
+- Polkit policy file, .desktop file with 8-language Name/Comment, Debian control/copyright
+- Icons: 48x48, 64x64, 128x128 from original 1024px icon
+- 3 screenshots added to assets/screenshots
 
 ### v1.0.0 (31/07/2025)
 

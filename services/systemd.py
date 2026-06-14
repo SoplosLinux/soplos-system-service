@@ -1,58 +1,101 @@
 import subprocess
 
+
 def list_services():
-    """
-    Returns a list of all systemd services with their status.
-    Each item is a dict: {name, description, loaded, active, sub, status}
-    """
+    """Return a list of all systemd service units with their status fields."""
     services = []
     try:
-        output = subprocess.check_output(
-            ["systemctl", "list-units", "--type=service", "--all", "--no-pager", "--no-legend"],
-            universal_newlines=True
+        result = subprocess.run(
+            ['systemctl', 'list-units', '--type=service', '--all',
+             '--no-pager', '--no-legend'],
+            capture_output=True, text=True, timeout=30
         )
-        for line in output.strip().split('\n'):
+        for line in result.stdout.strip().split('\n'):
             if not line:
                 continue
-            parts = line.split(None, 4)
+            parts = line.split(None, 5)
+            # systemctl prefixes failed/masked units with a ● bullet character
+            if parts and parts[0] in ('●', '●'):
+                parts = parts[1:]
             if len(parts) < 5:
                 continue
-            name, load, active, sub, description = parts
+            name = parts[0]
+            loaded = parts[1]
+            active = parts[2]
+            sub = parts[3]
+            description = parts[4] if len(parts) > 4 else ''
             services.append({
-                "name": name,
-                "loaded": load,
-                "active": active,
-                "sub": sub,
-                "description": description
+                'name': name,
+                'loaded': loaded,
+                'active': active,
+                'sub': sub,
+                'description': description,
             })
     except Exception as e:
         print(f"Error listing services: {e}")
     return services
 
+
 def get_service_status(service_name):
-    """
-    Returns the status of a specific service.
-    """
+    """Return the full status output of a service."""
     try:
-        output = subprocess.check_output(
-            ["systemctl", "status", service_name, "--no-pager"],
-            universal_newlines=True
+        result = subprocess.run(
+            ['systemctl', 'status', service_name, '--no-pager'],
+            capture_output=True, text=True, timeout=10
         )
-        return output
-    except subprocess.CalledProcessError as e:
-        return e.output
+        return result.stdout or result.stderr
+    except Exception as e:
+        return str(e)
+
+
+def get_service_logs(service_name, lines=200):
+    """Return the last N lines of journalctl output for a service."""
+    try:
+        result = subprocess.run(
+            ['journalctl', '-u', service_name, '--no-pager',
+             '-n', str(lines), '--output=short-precise'],
+            capture_output=True, text=True, timeout=15
+        )
+        return result.stdout or result.stderr
+    except Exception as e:
+        return str(e)
+
 
 def start_service(service_name):
-    return subprocess.call(["systemctl", "start", service_name]) == 0
+    result = subprocess.run(
+        ['systemctl', 'start', service_name],
+        capture_output=True, text=True, timeout=30
+    )
+    return result.returncode == 0, result.stderr
+
 
 def stop_service(service_name):
-    return subprocess.call(["systemctl", "stop", service_name]) == 0
+    result = subprocess.run(
+        ['systemctl', 'stop', service_name],
+        capture_output=True, text=True, timeout=30
+    )
+    return result.returncode == 0, result.stderr
+
 
 def restart_service(service_name):
-    return subprocess.call(["systemctl", "restart", service_name]) == 0
+    result = subprocess.run(
+        ['systemctl', 'restart', service_name],
+        capture_output=True, text=True, timeout=30
+    )
+    return result.returncode == 0, result.stderr
+
 
 def enable_service(service_name):
-    return subprocess.call(["systemctl", "enable", service_name]) == 0
+    result = subprocess.run(
+        ['systemctl', 'enable', service_name],
+        capture_output=True, text=True, timeout=30
+    )
+    return result.returncode == 0, result.stderr
+
 
 def disable_service(service_name):
-    return subprocess.call(["systemctl", "disable", service_name]) == 0
+    result = subprocess.run(
+        ['systemctl', 'disable', service_name],
+        capture_output=True, text=True, timeout=30
+    )
+    return result.returncode == 0, result.stderr

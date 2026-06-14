@@ -27,53 +27,89 @@
   <description>
     <p>
       Soplos System Services is a graphical tool for viewing, controlling and monitoring all systemd services on Soplos Linux Boro, Tyron and Tyson.
-      It provides a clean GTK3 interface with a service list, a details panel and a log viewer, with start, stop, restart, enable and disable controls.
+      It provides a clean GTK3 tabbed interface with a sortable service list, a scrollable details panel and a log viewer, with start, stop, restart, enable and disable controls that adapt to the current service state.
       Compatible with GNOME, XFCE and KDE desktop environments, on both X11 and Wayland, with automatic dark and light theme detection.
       Complete internationalization support for 8 languages.
     </p>
     <p xml:lang="de">
       Soplos Systemdienste ist ein grafisches Werkzeug zum Anzeigen, Steuern und Uberwachen aller systemd-Dienste unter Soplos Linux Boro, Tyron und Tyson.
-      Es bietet eine saubere GTK3-Oberflache mit einer Dienstliste, einem Detailbereich und einem Protokollbetrachter sowie Starten-, Stoppen-, Neustarten-, Aktivieren- und Deaktivieren-Steuerelementen.
+      Es bietet eine saubere GTK3-Registerkartenoberflache mit einer sortierbaren Dienstliste, einem scrollbaren Detailbereich und einem Protokollbetrachter sowie Steuerelementen zum Starten, Stoppen, Neustarten, Aktivieren und Deaktivieren, die sich dem aktuellen Dienstzustand anpassen.
       Kompatibel mit GNOME-, XFCE- und KDE-Desktop-Umgebungen, unter X11 und Wayland, mit automatischer Erkennung von dunklen und hellen Themen.
       Vollstandige Internationalisierungsunterstutzung fur 8 Sprachen.
     </p>
     <p xml:lang="es">
       Soplos Servicios del sistema es una herramienta grafica para ver, controlar y monitorizar todos los servicios systemd en Soplos Linux Boro, Tyron y Tyson.
-      Ofrece una interfaz GTK3 limpia con una lista de servicios, un panel de detalles y un visor de registros, con controles para iniciar, detener, reiniciar, activar y desactivar servicios.
+      Ofrece una interfaz GTK3 limpia con pestanas, una lista de servicios ordenable, un panel de detalles con scroll y un visor de registros, con controles para iniciar, detener, reiniciar, activar y desactivar servicios que se adaptan al estado actual del servicio.
       Compatible con los entornos de escritorio GNOME, XFCE y KDE, tanto en X11 como en Wayland, con deteccion automatica del tema oscuro o claro.
       Soporte completo de internacionalizacion para 8 idiomas.
     </p>
     <p xml:lang="fr">
       Soplos Services systeme est un outil graphique pour afficher, controler et surveiller tous les services systemd sous Soplos Linux Boro, Tyron et Tyson.
-      Il offre une interface GTK3 propre avec une liste de services, un panneau de details et un visualiseur de journaux, avec des commandes pour demarrer, arreter, redemarrer, activer et desactiver les services.
+      Il offre une interface GTK3 propre avec des onglets, une liste de services triable, un panneau de details defilant et un visualiseur de journaux, avec des commandes pour demarrer, arreter, redemarrer, activer et desactiver les services qui s'adaptent a l'etat actuel du service.
       Compatible avec les environnements de bureau GNOME, XFCE et KDE, sous X11 et Wayland, avec detection automatique du theme sombre ou clair.
       Support complet de l'internationalisation pour 8 langues.
     </p>
     <p xml:lang="it">
       Soplos Servizi di sistema e uno strumento grafico per visualizzare, controllare e monitorare tutti i servizi systemd su Soplos Linux Boro, Tyron e Tyson.
-      Offre un'interfaccia GTK3 pulita con un elenco di servizi, un pannello dei dettagli e un visualizzatore di log, con controlli per avviare, fermare, riavviare, abilitare e disabilitare i servizi.
+      Offre un'interfaccia GTK3 pulita a schede con un elenco di servizi ordinabile, un pannello dei dettagli scorrevole e un visualizzatore di log, con controlli per avviare, fermare, riavviare, abilitare e disabilitare i servizi che si adattano allo stato attuale del servizio.
       Compatibile con gli ambienti desktop GNOME, XFCE e KDE, su X11 e Wayland, con rilevamento automatico del tema scuro o chiaro.
       Supporto completo all'internazionalizzazione per 8 lingue.
     </p>
     <p xml:lang="pt">
       Soplos Servicos do sistema e uma ferramenta grafica para ver, controlar e monitorizar todos os servicos systemd no Soplos Linux Boro, Tyron e Tyson.
-      Oferece uma interface GTK3 limpa com uma lista de servicos, um painel de detalhes e um visualizador de registos, com controlos para iniciar, parar, reiniciar, ativar e desativar servicos.
-      Compativel com os ambientes de ambiente de trabalho GNOME, XFCE e KDE, em X11 e Wayland, com detecao automatica do tema escuro ou claro.
+      Oferece uma interface GTK3 limpa com separadores, uma lista de servicos ordenavel, um painel de detalhes com scroll e um visualizador de registos, com controlos para iniciar, parar, reiniciar, ativar e desativar servicos que se adaptam ao estado atual do servico.
+      Compativel com os ambientes de trabalho GNOME, XFCE e KDE, em X11 e Wayland, com detecao automatica do tema escuro ou claro.
       Suporte completo de internacionalizacao para 8 idiomas.
     </p>
     <p xml:lang="ro">
       Soplos Servicii de sistem este un instrument grafic pentru a vizualiza, controla si monitoriza toate serviciile systemd pe Soplos Linux Boro, Tyron si Tyson.
-      Ofera o interfata GTK3 curata cu o lista de servicii, un panou de detalii si un vizualizator de jurnale, cu controale pentru pornire, oprire, repornire, activare si dezactivare a serviciilor.
+      Ofera o interfata GTK3 curata cu file, o lista de servicii sortabila, un panou de detalii derulabil si un vizualizator de jurnale, cu controale pentru pornire, oprire, repornire, activare si dezactivare a serviciilor care se adapteaza la starea curenta a serviciului.
       Compatibil cu mediile de birou GNOME, XFCE si KDE, pe X11 si Wayland, cu detectie automata a temei inchise sau deschise.
       Suport complet de internationalizare pentru 8 limbi.
     </p>
     <p xml:lang="ru">
       Soplos Системные службы — это графический инструмент для просмотра, управления и мониторинга всех служб systemd в Soplos Linux Boro, Tyron и Tyson.
-      Предлагает чистый интерфейс GTK3 со списком служб, панелью сведений и просмотрщиком журналов, с кнопками запуска, остановки, перезапуска, включения и отключения служб.
+      Предлагает чистый интерфейс GTK3 с вкладками, сортируемый список служб, прокручиваемую панель сведений и просмотрщик журналов, с кнопками запуска, остановки, перезапуска, включения и отключения, адаптирующимися к текущему состоянию службы.
       Совместим с рабочими средами GNOME, XFCE и KDE, на X11 и Wayland, с автоматическим определением тёмной или светлой темы.
       Полная поддержка интернационализации на 8 языков.
     </p>
   </description>
+
+  <screenshots>
+    <screenshot type="default">
+      <image>https://soplos.org/assets/screenshots/system-service/screenshot01.png</image>
+      <caption>Service list overview with color-coded active and load states</caption>
+      <caption xml:lang="es">Vista general de la lista de servicios con estados activo y de carga codificados por color</caption>
+      <caption xml:lang="fr">Vue d'ensemble de la liste des services avec etats actif et de chargement codes par couleur</caption>
+      <caption xml:lang="de">Dienstlisten-Ubersicht mit farbcodierten Aktiv- und Ladezustanden</caption>
+      <caption xml:lang="it">Panoramica elenco servizi con stati attivo e di caricamento codificati per colore</caption>
+      <caption xml:lang="pt">Vista geral da lista de servicos com estados ativo e de carregamento codificados por cor</caption>
+      <caption xml:lang="ro">Prezentare generala a listei de servicii cu stari active si de incarcare codificate prin culoare</caption>
+      <caption xml:lang="ru">Обзор списка служб с цветовым кодированием активного состояния и состояния загрузки</caption>
+    </screenshot>
+    <screenshot>
+      <image>https://soplos.org/assets/screenshots/system-service/screenshot02.png</image>
+      <caption>Service details panel showing full systemctl status output</caption>
+      <caption xml:lang="es">Panel de detalles del servicio con la salida completa de systemctl status</caption>
+      <caption xml:lang="fr">Panneau de details du service affichant la sortie complete de systemctl status</caption>
+      <caption xml:lang="de">Dienstdetailbereich mit vollstandiger systemctl-Status-Ausgabe</caption>
+      <caption xml:lang="it">Pannello dettagli servizio con output completo di systemctl status</caption>
+      <caption xml:lang="pt">Painel de detalhes do servico com saida completa de systemctl status</caption>
+      <caption xml:lang="ro">Panoul de detalii al serviciului cu iesirea completa a comenzii systemctl status</caption>
+      <caption xml:lang="ru">Панель сведений о службе с полным выводом systemctl status</caption>
+    </screenshot>
+    <screenshot>
+      <image>https://soplos.org/assets/screenshots/system-service/screenshot03.png</image>
+      <caption>Logs tab with real-time journalctl output for the selected service</caption>
+      <caption xml:lang="es">Pestana de registros con salida en tiempo real de journalctl para el servicio seleccionado</caption>
+      <caption xml:lang="fr">Onglet journaux avec sortie journalctl en temps reel pour le service selectionne</caption>
+      <caption xml:lang="de">Protokoll-Reiter mit journalctl-Echtzeitausgabe fur den ausgewahlten Dienst</caption>
+      <caption xml:lang="it">Scheda log con output journalctl in tempo reale per il servizio selezionato</caption>
+      <caption xml:lang="pt">Separador de registos com saida journalctl em tempo real para o servico selecionado</caption>
+      <caption xml:lang="ro">Fila jurnale cu iesire journalctl in timp real pentru serviciul selectat</caption>
+      <caption xml:lang="ru">Вкладка журналов с выводом journalctl в реальном времени для выбранной службы</caption>
+    </screenshot>
+  </screenshots>
 
   <url type="homepage">https://soplos.org</url>
   <url type="bugtracker">https://github.com/SoplosLinux/soplos-system-service/issues</url>
@@ -133,111 +169,27 @@
   <releases>
     <release version="1.0.0-1" date="2026-06-14">
       <description>
-        <p>Complete rewrite of the application after almost a year on hold. Full GTK3 interface with service list, details panel, log viewer and service control, with automatic dark/light theme detection and support for GNOME, XFCE and KDE.</p>
-        <p xml:lang="de">Vollstandige Uberarbeitung der Anwendung nach fast einem Jahr Pause. Vollstandige GTK3-Oberflache mit Dienstliste, Detailbereich, Protokollbetrachter und Dienststeuerung, mit automatischer Dunkel-/Hell-Themenerkennung und Unterstutzung fur GNOME, XFCE und KDE.</p>
-        <p xml:lang="es">Reescritura completa de la aplicacion tras casi un ano en espera. Interfaz GTK3 completa con lista de servicios, panel de detalles, visor de registros y control de servicios, con deteccion automatica de tema oscuro/claro y soporte para GNOME, XFCE y KDE.</p>
-        <p xml:lang="fr">Reecriture complete de l'application apres pres d'un an en attente. Interface GTK3 complete avec liste de services, panneau de details, visualiseur de journaux et controle des services, avec detection automatique du theme sombre/clair et support pour GNOME, XFCE et KDE.</p>
-        <p xml:lang="it">Riscrittura completa dell'applicazione dopo quasi un anno in attesa. Interfaccia GTK3 completa con elenco di servizi, pannello dei dettagli, visualizzatore di log e controllo dei servizi, con rilevamento automatico del tema scuro/chiaro e supporto per GNOME, XFCE e KDE.</p>
-        <p xml:lang="pt">Reescrita completa da aplicacao apos quase um ano em espera. Interface GTK3 completa com lista de servicos, painel de detalhes, visualizador de registos e controlo de servicos, com detecao automatica do tema escuro/claro e suporte para GNOME, XFCE e KDE.</p>
-        <p xml:lang="ro">Rescriere completa a aplicatiei dupa aproape un an de pauza. Interfata GTK3 completa cu lista de servicii, panou de detalii, vizualizator de jurnale si control al serviciilor, cu detectie automata a temei inchise/deschise si suport pentru GNOME, XFCE si KDE.</p>
-        <p xml:lang="ru">Полная переработка приложения после почти года простоя. Полный интерфейс GTK3 со списком служб, панелью сведений, просмотрщиком журналов и управлением службами, с автоматическим определением тёмной/светлой темы и поддержкой GNOME, XFCE и KDE.</p>
+        <p>Complete rewrite of the application after almost a year on hold. Full GTK3 tabbed interface with service list, scrollable details panel, log viewer and smart service controls, with automatic dark/light theme detection and support for GNOME, XFCE and KDE.</p>
+        <p xml:lang="de">Vollstandige Uberarbeitung der Anwendung nach fast einem Jahr Pause. Vollstandige GTK3-Registerkartenoberflache mit Dienstliste, scrollbarem Detailbereich, Protokollbetrachter und intelligenter Dienststeuerung, mit automatischer Dunkel-/Hell-Themenerkennung und Unterstutzung fur GNOME, XFCE und KDE.</p>
+        <p xml:lang="es">Reescritura completa de la aplicacion tras casi un ano en espera. Interfaz GTK3 completa con pestanas, lista de servicios, panel de detalles con scroll, visor de registros y controles inteligentes de servicios, con deteccion automatica de tema oscuro/claro y soporte para GNOME, XFCE y KDE.</p>
+        <p xml:lang="fr">Reecriture complete de l'application apres pres d'un an en attente. Interface GTK3 complete avec onglets, liste de services, panneau de details defilant, visualiseur de journaux et commandes intelligentes des services, avec detection automatique du theme sombre/clair et support pour GNOME, XFCE et KDE.</p>
+        <p xml:lang="it">Riscrittura completa dell'applicazione dopo quasi un anno in attesa. Interfaccia GTK3 completa a schede con elenco servizi, pannello dettagli scorrevole, visualizzatore log e controlli intelligenti dei servizi, con rilevamento automatico del tema scuro/chiaro e supporto per GNOME, XFCE e KDE.</p>
+        <p xml:lang="pt">Reescrita completa da aplicacao apos quase um ano em espera. Interface GTK3 completa com separadores, lista de servicos, painel de detalhes com scroll, visualizador de registos e controlos inteligentes de servicos, com detecao automatica do tema escuro/claro e suporte para GNOME, XFCE e KDE.</p>
+        <p xml:lang="ro">Rescriere completa a aplicatiei dupa aproape un an de pauza. Interfata GTK3 completa cu file, lista de servicii, panou de detalii derulabil, vizualizator de jurnale si controale inteligente ale serviciilor, cu detectie automata a temei inchise/deschise si suport pentru GNOME, XFCE si KDE.</p>
+        <p xml:lang="ru">Полная переработка приложения после почти года простоя. Полный интерфейс GTK3 с вкладками, списком служб, прокручиваемой панелью сведений, просмотрщиком журналов и умным управлением службами, с автоматическим определением тёмной/светлой темы и поддержкой GNOME, XFCE и KDE.</p>
         <ul>
-          <li>Full GTK3 interface with sidebar navigation and Gtk.Stack content switching</li>
-          <li>Services view with sortable and filterable TreeView, color-coded active state</li>
-          <li>Details panel showing service name, state and description below the service list</li>
-          <li>Start, stop, restart, enable and disable controls with confirmation dialogs</li>
+          <li>Gtk.Notebook tab interface: Services tab and Logs tab with Soplos orange active tab accent</li>
+          <li>Sortable service list with color-coded active state (green/red) and load state (not-found in red)</li>
+          <li>Smart action buttons: Start, Stop and Restart adapt to the current service state</li>
+          <li>Scrollable details panel using Gtk.TextView inside Gtk.ScrolledWindow</li>
           <li>Log viewer with real-time journalctl output for the selected service</li>
-          <li>Environment detection for GNOME, XFCE and KDE desktop environments</li>
-          <li>CSD header bar on GNOME, native window decorations on XFCE and KDE</li>
-          <li>Automatic dark and light theme detection per desktop environment</li>
-          <li>CSS theming with base, dark and light stylesheets using Soplos brand colors</li>
-          <li>Background threading for service listing and log fetching</li>
-          <li>Fixed duplicate service rows in the original implementation</li>
-          <li>Fixed duplicate language string definitions in utils/strings.py</li>
-          <li xml:lang="de">Vollstandige GTK3-Oberflache mit Seitenleistennavigation und Gtk.Stack-Inhaltsumschaltung</li>
-          <li xml:lang="de">Dienstansicht mit sortierbarer und filterbarer TreeView, farbcodiertem Aktivzustand</li>
-          <li xml:lang="de">Detailbereich mit Dienstname, Zustand und Beschreibung unterhalb der Dienstliste</li>
-          <li xml:lang="de">Starten-, Stoppen-, Neustarten-, Aktivieren- und Deaktivieren-Steuerelemente mit Bestatigungsdialogen</li>
-          <li xml:lang="de">Protokollbetrachter mit journalctl-Ausgabe fur den ausgewahlten Dienst</li>
-          <li xml:lang="de">Umgebungserkennung fur GNOME-, XFCE- und KDE-Desktops</li>
-          <li xml:lang="de">CSD-Titelleiste unter GNOME, native Fensterdekoration unter XFCE und KDE</li>
-          <li xml:lang="de">Automatische Dunkel- und Hell-Themenerkennung je nach Desktop-Umgebung</li>
-          <li xml:lang="de">CSS-Design mit Basis-, Dunkel- und Hell-Stylesheets in Soplos-Markenfarben</li>
-          <li xml:lang="de">Hintergrund-Threading fur Dienstauflistung und Protokollabruf</li>
-          <li xml:lang="de">Behoben: Doppelte Dienstzeilen in der ursprunglichen Implementierung</li>
-          <li xml:lang="de">Behoben: Doppelte Sprachstring-Definitionen in utils/strings.py</li>
-          <li xml:lang="es">Interfaz GTK3 completa con navegacion en barra lateral y conmutacion de contenido con Gtk.Stack</li>
-          <li xml:lang="es">Vista de servicios con TreeView ordenable y filtrable, estado activo codificado por color</li>
-          <li xml:lang="es">Panel de detalles con nombre del servicio, estado y descripcion debajo de la lista</li>
-          <li xml:lang="es">Controles de iniciar, detener, reiniciar, activar y desactivar con dialogos de confirmacion</li>
-          <li xml:lang="es">Visor de registros con salida journalctl en tiempo real para el servicio seleccionado</li>
-          <li xml:lang="es">Deteccion de entorno para escritorios GNOME, XFCE y KDE</li>
-          <li xml:lang="es">Barra de titulo CSD en GNOME, decoraciones nativas en XFCE y KDE</li>
-          <li xml:lang="es">Deteccion automatica de tema oscuro y claro segun el entorno de escritorio</li>
-          <li xml:lang="es">Temas CSS con hojas de estilo base, oscura y clara usando los colores de marca Soplos</li>
-          <li xml:lang="es">Hilos en segundo plano para la carga de servicios y registros</li>
-          <li xml:lang="es">Corregido: filas de servicios duplicadas en la implementacion original</li>
-          <li xml:lang="es">Corregido: definiciones de cadenas de idioma duplicadas en utils/strings.py</li>
-          <li xml:lang="fr">Interface GTK3 complete avec navigation dans la barre laterale et commutation de contenu avec Gtk.Stack</li>
-          <li xml:lang="fr">Vue des services avec TreeView triable et filtrable, etat actif code par couleur</li>
-          <li xml:lang="fr">Panneau de details avec le nom du service, l'etat et la description sous la liste</li>
-          <li xml:lang="fr">Commandes de demarrage, arret, redemarrage, activation et desactivation avec dialogues de confirmation</li>
-          <li xml:lang="fr">Visualiseur de journaux avec sortie journalctl en temps reel pour le service selectionne</li>
-          <li xml:lang="fr">Detection de l'environnement pour les bureaux GNOME, XFCE et KDE</li>
-          <li xml:lang="fr">Barre de titre CSD sous GNOME, decorations natives sous XFCE et KDE</li>
-          <li xml:lang="fr">Detection automatique du theme sombre et clair selon l'environnement de bureau</li>
-          <li xml:lang="fr">Themes CSS avec feuilles de style de base, sombre et claire en couleurs de marque Soplos</li>
-          <li xml:lang="fr">Threads en arriere-plan pour le chargement des services et des journaux</li>
-          <li xml:lang="fr">Corrige: lignes de services en double dans l'implementation d'origine</li>
-          <li xml:lang="fr">Corrige: definitions de chaines de langue en double dans utils/strings.py</li>
-          <li xml:lang="it">Interfaccia GTK3 completa con navigazione nella barra laterale e commutazione dei contenuti con Gtk.Stack</li>
-          <li xml:lang="it">Vista dei servizi con TreeView ordinabile e filtrabile, stato attivo codificato per colore</li>
-          <li xml:lang="it">Pannello dei dettagli con nome del servizio, stato e descrizione sotto l'elenco</li>
-          <li xml:lang="it">Controlli di avvio, arresto, riavvio, abilitazione e disabilitazione con dialoghi di conferma</li>
-          <li xml:lang="it">Visualizzatore di log con output journalctl in tempo reale per il servizio selezionato</li>
-          <li xml:lang="it">Rilevamento dell'ambiente per i desktop GNOME, XFCE e KDE</li>
-          <li xml:lang="it">Barra del titolo CSD su GNOME, decorazioni native su XFCE e KDE</li>
-          <li xml:lang="it">Rilevamento automatico del tema scuro e chiaro per ambiente desktop</li>
-          <li xml:lang="it">Temi CSS con fogli di stile base, scuro e chiaro nei colori del marchio Soplos</li>
-          <li xml:lang="it">Thread in background per il caricamento dei servizi e dei log</li>
-          <li xml:lang="it">Corretto: righe di servizi duplicate nell'implementazione originale</li>
-          <li xml:lang="it">Corretto: definizioni duplicate di stringhe di lingua in utils/strings.py</li>
-          <li xml:lang="pt">Interface GTK3 completa com navegacao na barra lateral e comutacao de conteudo com Gtk.Stack</li>
-          <li xml:lang="pt">Vista de servicos com TreeView ordenavel e filtravel, estado ativo codificado por cor</li>
-          <li xml:lang="pt">Painel de detalhes com nome do servico, estado e descricao abaixo da lista</li>
-          <li xml:lang="pt">Controlos de iniciar, parar, reiniciar, ativar e desativar com dialogos de confirmacao</li>
-          <li xml:lang="pt">Visualizador de registos com saida journalctl em tempo real para o servico selecionado</li>
-          <li xml:lang="pt">Detecao de ambiente para ambientes de trabalho GNOME, XFCE e KDE</li>
-          <li xml:lang="pt">Barra de titulo CSD no GNOME, decoracoes nativas no XFCE e KDE</li>
-          <li xml:lang="pt">Detecao automatica de tema escuro e claro por ambiente de trabalho</li>
-          <li xml:lang="pt">Temas CSS com folhas de estilo base, escura e clara nas cores de marca Soplos</li>
-          <li xml:lang="pt">Threads em segundo plano para carregamento de servicos e registos</li>
-          <li xml:lang="pt">Corrigido: linhas de servicos duplicadas na implementacao original</li>
-          <li xml:lang="pt">Corrigido: definicoes de cadeias de idioma duplicadas em utils/strings.py</li>
-          <li xml:lang="ro">Interfata GTK3 completa cu navigare in bara laterala si comutare continut cu Gtk.Stack</li>
-          <li xml:lang="ro">Vedere servicii cu TreeView sortabil si filtrabil, stare activa codificata prin culoare</li>
-          <li xml:lang="ro">Panou de detalii cu numele serviciului, starea si descrierea sub lista</li>
-          <li xml:lang="ro">Controale de pornire, oprire, repornire, activare si dezactivare cu dialoguri de confirmare</li>
-          <li xml:lang="ro">Vizualizator de jurnale cu iesire journalctl in timp real pentru serviciul selectat</li>
-          <li xml:lang="ro">Detectie de mediu pentru mediile de birou GNOME, XFCE si KDE</li>
-          <li xml:lang="ro">Bara de titlu CSD pe GNOME, decoratii native pe XFCE si KDE</li>
-          <li xml:lang="ro">Detectie automata a temei inchise si deschise pe mediu de birou</li>
-          <li xml:lang="ro">Teme CSS cu foi de stil de baza, inchisa si deschisa in culorile marcii Soplos</li>
-          <li xml:lang="ro">Fire de executie in fundal pentru incarcarea serviciilor si a jurnalelor</li>
-          <li xml:lang="ro">Corectat: randuri de servicii duplicate in implementarea originala</li>
-          <li xml:lang="ro">Corectat: definitii duplicate de siruri de limbaj in utils/strings.py</li>
-          <li xml:lang="ru">Полный интерфейс GTK3 с навигацией по боковой панели и переключением контента через Gtk.Stack</li>
-          <li xml:lang="ru">Список служб с сортируемым и фильтруемым TreeView, цветовым кодированием активного состояния</li>
-          <li xml:lang="ru">Панель сведений с именем службы, состоянием и описанием под списком</li>
-          <li xml:lang="ru">Управление запуском, остановкой, перезапуском, включением и отключением с диалогами подтверждения</li>
-          <li xml:lang="ru">Просмотрщик журналов с выводом journalctl в реальном времени для выбранной службы</li>
-          <li xml:lang="ru">Определение среды для рабочих столов GNOME, XFCE и KDE</li>
-          <li xml:lang="ru">Заголовочная панель CSD в GNOME, нативное оформление окон в XFCE и KDE</li>
-          <li xml:lang="ru">Автоматическое определение тёмной и светлой темы по рабочей среде</li>
-          <li xml:lang="ru">CSS-темы с базовой, тёмной и светлой таблицами стилей в фирменных цветах Soplos</li>
-          <li xml:lang="ru">Фоновые потоки для загрузки списка служб и журналов</li>
-          <li xml:lang="ru">Исправлено: дублирующиеся строки служб в исходной реализации</li>
-          <li xml:lang="ru">Исправлено: повторяющиеся определения языковых строк в utils/strings.py</li>
+          <li>Progress bar with Gtk.Revealer and pulse animation during loading and service operations, with minimum display time</li>
+          <li>CSD HeaderBar always active with operation status in subtitle</li>
+          <li>Static Soplos footer showing DE, protocol and base version</li>
+          <li>Dark/light theme pre-detected as regular user before pkexec elevation via SOPLOS_COLOR_SCHEME</li>
+          <li>Two-provider CSS loading: dark.css or light.css plus base.css</li>
+          <li>Polkit policy, desktop launcher, bash wrapper and Debian packaging</li>
+          <li>Icons at 48x48, 64x64 and 128x128</li>
         </ul>
       </description>
     </release>
