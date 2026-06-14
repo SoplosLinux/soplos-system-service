@@ -1,0 +1,1 @@
+# gettext language dictionaries package
