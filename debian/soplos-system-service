@@ -1,0 +1,87 @@
+#!/bin/bash
+
+if [ $(id -u) -ne 0 ]; then
+    display=$DISPLAY
+    xauthority=$XAUTHORITY
+    xdg_runtime_dir=$XDG_RUNTIME_DIR
+    xdg_session_type=$XDG_SESSION_TYPE
+    xdg_current_desktop=$XDG_CURRENT_DESKTOP
+    desktop_session=$DESKTOP_SESSION
+    xdg_session_desktop=$XDG_SESSION_DESKTOP
+    dbus_session=$DBUS_SESSION_BUS_ADDRESS
+    lang=$LANG
+    language=$LANGUAGE
+    lc_all=$LC_ALL
+    home=$HOME
+    user=$USER
+    svc_lang=$SOPLOS_SYSTEM_SERVICE_LANG
+
+    soplos_color_scheme="dark"
+    if command -v xfconf-query &>/dev/null; then
+        theme=$(xfconf-query -c xsettings -p /Net/ThemeName 2>/dev/null)
+        [[ "$theme" != *"dark"* && "$theme" != *"Dark"* ]] && soplos_color_scheme="light"
+    elif command -v gsettings &>/dev/null; then
+        scheme=$(gsettings get org.gnome.desktop.interface color-scheme 2>/dev/null)
+        gtk_theme=$(gsettings get org.gnome.desktop.interface gtk-theme 2>/dev/null)
+        if [[ "$scheme" != *"prefer-dark"* && "$gtk_theme" != *"dark"* && "$gtk_theme" != *"Dark"* ]]; then
+            soplos_color_scheme="light"
+        fi
+    fi
+
+    pkexec --disable-internal-agent env \
+        DISPLAY="$display" \
+        XAUTHORITY="$xauthority" \
+        XDG_RUNTIME_DIR="$xdg_runtime_dir" \
+        XDG_SESSION_TYPE="$xdg_session_type" \
+        XDG_CURRENT_DESKTOP="$xdg_current_desktop" \
+        DESKTOP_SESSION="$desktop_session" \
+        XDG_SESSION_DESKTOP="$xdg_session_desktop" \
+        DBUS_SESSION_BUS_ADDRESS="$dbus_session" \
+        LANG="$lang" \
+        LANGUAGE="$language" \
+        LC_ALL="$lc_all" \
+        HOME="$home" \
+        USER="$user" \
+        SOPLOS_SYSTEM_SERVICE_LANG="$svc_lang" \
+        SOPLOS_COLOR_SCHEME="$soplos_color_scheme" \
+        GTK_IM_MODULE="gtk-im-context-simple" \
+        WMCLASS="org.soplos.systemservice" \
+        python3 -c "
+import sys
+import os
+sys.path.insert(0, '/usr/share/soplos-system-service')
+
+import gi
+gi.require_version('Gtk', '3.0')
+from gi.repository import GLib, Gdk
+
+GLib.set_prgname('org.soplos.systemservice')
+GLib.set_application_name('Soplos System Services')
+if hasattr(Gdk, 'set_program_class'):
+    Gdk.set_program_class('org.soplos.systemservice')
+
+import main
+sys.exit(main.main())
+"
+    exit $?
+else
+    cd /usr/share/soplos-system-service
+
+    python3 -c "
+import sys
+import os
+sys.path.insert(0, '/usr/share/soplos-system-service')
+
+import gi
+gi.require_version('Gtk', '3.0')
+from gi.repository import GLib, Gdk
+
+GLib.set_prgname('org.soplos.systemservice')
+GLib.set_application_name('Soplos System Services')
+if hasattr(Gdk, 'set_program_class'):
+    Gdk.set_program_class('org.soplos.systemservice')
+
+import main
+sys.exit(main.main())
+"
+fi

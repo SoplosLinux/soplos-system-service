@@ -15,7 +15,7 @@ class SoplosSystemServiceApp(Gtk.Application):
     def __init__(self):
         super().__init__(
             application_id=APP_ID,
-            flags=Gio.ApplicationFlags.FLAGS_NONE
+            flags=Gio.ApplicationFlags.HANDLES_COMMAND_LINE
         )
         self._window = None
         self._base_dir = Path(__file__).parent.parent
@@ -31,6 +31,10 @@ class SoplosSystemServiceApp(Gtk.Application):
         action_quit.connect('activate', lambda a, p: self.quit())
         self.add_action(action_quit)
         self.set_accels_for_action('app.quit', ['<Control>q', '<Control>w'])
+
+    def do_command_line(self, command_line):
+        self.activate()
+        return 0
 
     def do_activate(self):
         if not self._window:

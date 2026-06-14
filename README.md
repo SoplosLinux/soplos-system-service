@@ -1,7 +1,7 @@
 # Soplos System Services
 
 [![License: GPL-3.0+](https://img.shields.io/badge/License-GPL--3.0%2B-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
-[![Version](https://img.shields.io/badge/version-1.0.0--1-green.svg)]()
+[![Version](https://img.shields.io/badge/version-1.0.0--2-green.svg)]()
 
 GTK3 graphical manager for systemd services on Soplos Linux.
 
@@ -97,6 +97,23 @@ Contact: info@soploslinux.com
 - [Report issues](https://github.com/SoplosLinux/soplos-system-service/issues)
 
 ## Versions
+
+### v1.0.0-2 (14/06/2026)
+
+- pkexec handling moved entirely to the bash wrapper; removed from main.py
+- Wrapper renamed to match project name (soplos-system-service, no trailing s)
+- Wrapper follows the Soplos pattern: pkexec calls python3 -c inline, no recursive wrapper invocation
+- GLib.set_prgname and GLib.set_application_name set in wrapper before importing main, eliminating duplicate call warning
+- Gtk.Application flag changed to HANDLES_COMMAND_LINE with do_command_line calling activate(); fixes silent exit when running as root via pkexec
+- postinst simplified: removed broken chmod with wrong path that caused package install failure
+- Dark/light theme detection in the bash wrapper (xfconf-query / gsettings)
+- Progress bar position fixed: now appears above the footer
+- Progress bar minimum display time of 700ms
+- Details panel: Gtk.Label replaced by Gtk.TextView inside Gtk.ScrolledWindow
+- Smart action buttons: Start/Stop/Restart adapt to current service state
+- Color-coded Loaded column: not-found in red
+- Black border artifact removed from details panel
+- Suppressed ibus warnings when running as root via GTK_IM_MODULE
 
 ### v1.0.0-1 (14/06/2026)
 

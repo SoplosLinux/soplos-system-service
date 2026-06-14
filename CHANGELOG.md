@@ -5,6 +5,25 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/lang/en/).
 
+## [1.0.0-2] - 2026-06-14
+
+### Fixed
+
+- Wrapper renamed from soplos-system-services to soplos-system-service, matching the project name and the Soplos packaging convention (all other apps follow this pattern)
+- Wrapper now follows the Soplos pattern: pkexec calls python3 -c inline instead of calling the wrapper recursively; this avoids the need for a matching polkit exec.path policy and matches how soplos-grub-editor works
+- GLib.set_prgname and GLib.set_application_name are now set inside the wrapper before importing main, eliminating the "g_set_application_name() called multiple times" terminal warning that appeared on every launch
+- Gtk.Application changed from FLAGS_NONE to HANDLES_COMMAND_LINE with a do_command_line handler that calls activate(); FLAGS_NONE caused silent exit when the D-Bus singleton registration failed running as root via pkexec
+- postinst fixed: the previous script used /usr/share/soplos-system-services/ (wrong path with trailing s) which made set -e exit immediately, leaving the package in a broken half-installed state
+- pkexec handling moved entirely to the bash wrapper (as per the Soplos app pattern); removed from main.py which now only runs the GTK application
+- GTK_IM_MODULE set to gtk-im-context-simple in the wrapper to suppress ibus connection warnings when running as root
+- Dark/light theme detection moved to the bash wrapper using xfconf-query (XFCE) and gsettings (GNOME), passed via SOPLOS_COLOR_SCHEME
+- Progress bar now appears correctly above the footer (pack_end ordering was reversed in -1)
+- Progress bar minimum display time of 700ms so it is visible even on fast operations
+- Details panel replaced Gtk.Label with Gtk.TextView inside Gtk.ScrolledWindow, preventing window deformation on long systemctl output and adding scroll support
+- Smart action buttons: Start disabled when service is active, Stop/Restart disabled when inactive
+- Color-coded Loaded column: not-found entries shown in red
+- Black border artifact removed from details panel by moving soplos-card class to the ScrolledWindow and setting ShadowType.NONE
+
 ## [1.0.0-1] - 2026-06-14
 
 ### Rewritten
