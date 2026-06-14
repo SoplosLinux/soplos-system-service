@@ -29,7 +29,7 @@ class MainWindow(Gtk.ApplicationWindow):
 
         env = env_detector.detect_all()
 
-        self._setup_headerbar()
+        self._setup_headerbar(env)
         self._build_ui(env)
         self.connect('key-press-event', self._on_key_press)
         self.show_all()
@@ -44,7 +44,13 @@ class MainWindow(Gtk.ApplicationWindow):
                 return
         self.set_icon_name('preferences-system')
 
-    def _setup_headerbar(self):
+    def _setup_headerbar(self, env):
+        desktop = env.get('desktop_environment', 'unknown').lower()
+        if desktop in ('xfce', 'kde', 'plasma'):
+            # Native window decorations — let the DE handle the titlebar
+            self._header = None
+            self.set_title(_('main.title'))
+            return
         self._header = Gtk.HeaderBar()
         self._header.set_show_close_button(True)
         self._header.set_title(_('main.title'))
@@ -171,7 +177,11 @@ class MainWindow(Gtk.ApplicationWindow):
         vbox.pack_end(footer, False, False, 0)
 
     def set_status(self, message):
-        self._header.set_subtitle(message)
+        if self._header is not None:
+            self._header.set_subtitle(message)
+        else:
+            title = _('main.title')
+            self.set_title(f'{title} — {message}' if message else title)
 
     def on_service_selected(self, service_name):
         if self._logs_view:

@@ -1,7 +1,7 @@
 # Soplos System Services
 
 [![License: GPL-3.0+](https://img.shields.io/badge/License-GPL--3.0%2B-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
-[![Version](https://img.shields.io/badge/version-1.0.0--2-green.svg)]()
+[![Version](https://img.shields.io/badge/version-1.0.0--3-green.svg)]()
 
 GTK3 graphical manager for systemd services on Soplos Linux.
 
@@ -97,6 +97,11 @@ Contact: info@soploslinux.com
 - [Report issues](https://github.com/SoplosLinux/soplos-system-service/issues)
 
 ## Versions
+
+### v1.0.0-3 (14/06/2026)
+
+- Titlebar uses native window decorations in XFCE and KDE/Plasma (matching all other Soplos apps); CSD HeaderBar only active in GNOME
+- set_status() updated to work in both modes: subtitle in CSD mode, window title in native mode
 
 ### v1.0.0-2 (14/06/2026)
 

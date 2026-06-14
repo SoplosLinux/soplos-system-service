@@ -5,6 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/lang/en/).
 
+## [1.0.0-3] - 2026-06-14
+
+### Fixed
+
+- Titlebar now uses native window decorations in XFCE and KDE/Plasma, matching the rest of the Soplos applications; CSD HeaderBar (Gtk.HeaderBar) is only used in GNOME and other desktop environments
+- set_status() adapted: in native mode updates the window title instead of a headerbar subtitle
+
+---
+
 ## [1.0.0-2] - 2026-06-14
 
 ### Fixed
