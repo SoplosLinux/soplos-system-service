@@ -1,7 +1,7 @@
 # Soplos System Services
 
 [![License: GPL-3.0+](https://img.shields.io/badge/License-GPL--3.0%2B-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
-[![Version](https://img.shields.io/badge/version-1.0.0--3-green.svg)]()
+[![Version](https://img.shields.io/badge/version-1.0.0--4-green.svg)]()
 
 GTK3 graphical manager for systemd services on Soplos Linux.
 
@@ -97,6 +97,10 @@ Contact: info@soploslinux.com
 - [Report issues](https://github.com/SoplosLinux/soplos-system-service/issues)
 
 ## Versions
+
+### v1.0.0-4 (14/06/2026)
+
+- GNOME crash fixed: wrapper now calls gi.require_version('Gdk', '3.0') before importing Gdk, preventing conflict with GTK4 already loaded in GNOME sessions
 
 ### v1.0.0-3 (14/06/2026)
 

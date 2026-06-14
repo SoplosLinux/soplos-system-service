@@ -53,6 +53,7 @@ sys.path.insert(0, '/usr/share/soplos-system-service')
 
 import gi
 gi.require_version('Gtk', '3.0')
+gi.require_version('Gdk', '3.0')
 from gi.repository import GLib, Gdk
 
 GLib.set_prgname('org.soplos.systemservice')
@@ -74,6 +75,7 @@ sys.path.insert(0, '/usr/share/soplos-system-service')
 
 import gi
 gi.require_version('Gtk', '3.0')
+gi.require_version('Gdk', '3.0')
 from gi.repository import GLib, Gdk
 
 GLib.set_prgname('org.soplos.systemservice')
