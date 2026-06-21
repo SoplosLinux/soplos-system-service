@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/lang/en/).
 
+## [1.0.0-5] - 2026-06-21
+
+### Fixed
+
+- GNOME crash on launch (gtkiconhelper assertion failed / gdk-pixbuf SVG loader aborted): the wrapper was passing HOME=/home/soplos (the regular user's home) to the root process via pkexec. gdk-pixbuf sandboxes its SVG rasterizer with bubblewrap; when the parent is root but HOME points to a user directory, the bwrap sandbox fails to initialize and GTK aborts. Fixed by passing HOME=/root, matching how soplos-grub-editor handles it.
+
+---
+
 ## [1.0.0-4] - 2026-06-14
 
 ### Fixed

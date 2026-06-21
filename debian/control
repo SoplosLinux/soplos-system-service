@@ -9,7 +9,7 @@ Homepage: https://github.com/SoplosLinux/soplos-system-service
 Rules-Requires-Root: no
 
 Package: soplos-system-services
-Version: 1.0.0-4
+Version: 1.0.0-5
 Architecture: all
 Depends: ${misc:Depends},
          python3,
