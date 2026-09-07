@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='soplos-system-services',
-    version='1.0.0-1',
+    version='1.0.0-6',
     description='GTK3 graphical manager for systemd services on Soplos Linux',
     author='Sergi Perich',
     author_email='info@soploslinux.com',

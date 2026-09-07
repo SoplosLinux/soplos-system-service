@@ -1,7 +1,7 @@
 # Soplos System Services
 
 [![License: GPL-3.0+](https://img.shields.io/badge/License-GPL--3.0%2B-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
-[![Version](https://img.shields.io/badge/version-1.0.0--5-green.svg)]()
+[![Version](https://img.shields.io/badge/version-1.0.0--6-green.svg)]()
 
 GTK3 graphical manager for systemd services on Soplos Linux.
 
@@ -97,6 +97,16 @@ Contact: info@soploslinux.com
 - [Report issues](https://github.com/SoplosLinux/soplos-system-service/issues)
 
 ## Versions
+
+### v1.0.0-6 (07/09/2026)
+
+- New "Optimization" tab: scans the system and suggests systemd services to disable or enable, grouped by category (hardware not present, redundant stack, orphaned package, recommended maintenance, blocks boot) and by resource optimized (RAM, boot time, power, disk, cleanup)
+- Detects virtualization guest tools, Bluetooth/Wi-Fi services with no matching hardware, and a redundant PulseAudio service when PipeWire is active
+- Detects dangling systemd enablement symlinks left behind by uninstalled packages (LoadState 'not-found') and orphaned services whose owning dpkg package is no longer installed; shows the exact symlink path being removed
+- Suggests enabling fstrim.timer when an SSD/NVMe is present and it is not already enabled
+- Suggests disabling NetworkManager-wait-online.service to speed up boot (marked medium risk)
+- Informational panel listing the slowest-starting services/timers at boot (systemd-analyze blame) and timers that wake the system frequently
+- New "Select all" button and per-row checkboxes in the Optimization tab
 
 ### v1.0.0-5 (21/06/2026)
 

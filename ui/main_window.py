@@ -8,6 +8,7 @@ from core import APP_VERSION
 from utils.strings import _
 from ui.services_view import ServicesView
 from ui.logs_view import LogsView
+from ui.optimization_view import OptimizationView
 
 
 class MainWindow(Gtk.ApplicationWindow):
@@ -18,6 +19,7 @@ class MainWindow(Gtk.ApplicationWindow):
         self._base_dir = Path(__file__).parent.parent
         self._services_view = None
         self._logs_view = None
+        self._optimization_view = None
         self._pulse_timeout = None
 
         self.set_title(_('main.title'))
@@ -75,6 +77,10 @@ class MainWindow(Gtk.ApplicationWindow):
         self._logs_view = LogsView(self)
         tab_logs = self._make_tab_label('text-x-log', _('tab.logs'))
         notebook.append_page(self._logs_view, tab_logs)
+
+        self._optimization_view = OptimizationView(self)
+        tab_optimization = self._make_tab_label('preferences-system-performance', _('tab.optimization'))
+        notebook.append_page(self._optimization_view, tab_optimization)
 
         main_vbox.pack_start(notebook, True, True, 0)
 

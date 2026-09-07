@@ -5,6 +5,25 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/lang/en/).
 
+## [1.0.0-6] - 2026-09-07
+
+### Added
+
+- New "Optimization" tab that scans the system and suggests systemd services to disable or enable, each tagged with a category (hardware not present, redundant stack, orphaned package, recommended maintenance, blocks boot) and the resource it optimizes (RAM, boot time, power, disk, cleanup)
+- Virtualization detection (systemd-detect-virt + DMI fallback) to suggest disabling VM guest tool services on bare metal
+- Bluetooth/Wi-Fi hardware presence detection (`/sys/class/bluetooth`, `/sys/class/ieee80211`) to suggest disabling services with no matching adapter
+- Redundant audio stack detection: suggests disabling pulseaudio.service when PipeWire is active
+- Dangling enablement symlink detection: finds `*.wants`/`*.requires` symlinks pointing at units with LoadState 'not-found' (leftover from packages removed without cleaning their systemd hooks) and offers to remove them, showing the exact path
+- Orphaned service detection: unit files whose owning dpkg package is no longer installed
+- fstrim.timer enablement suggestion when an SSD/NVMe is present and periodic TRIM is not enabled
+- NetworkManager-wait-online.service disablement suggestion to speed up boot (medium risk — flagged for novice users since a machine with network-dependent startup jobs could race against it)
+- Informational (non-actionable) panel listing the slowest services/timers at boot (systemd-analyze blame, filtered to .service/.timer only) and timers with a short re-trigger interval
+- "Select all" button and per-row checkboxes in the Optimization tab
+
+### Fixed
+
+- Orphan/huerfano scan no longer spawns one `systemctl show` + `dpkg -S` subprocess per service; both are now batched, which was the main cause of a slow scan on systems with hundreds of services
+
 ## [1.0.0-5] - 2026-06-21
 
 ### Fixed
